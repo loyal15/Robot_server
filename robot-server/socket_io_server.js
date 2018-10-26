@@ -84,7 +84,7 @@ module.exports = function(server) {
         }));
     
         socket.on('disconnect', function () {
-            console.log('Connection ' + socket.id + ' closed --- ');
+            console.log('Connection ' + socket.id + ' closed ----- ');
 
             let user = theUserRegistry.getBySocket(socket.id);
             if( user && user.socket_id == socket.id )  {
