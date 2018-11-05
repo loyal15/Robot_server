@@ -5,24 +5,53 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res) {
-    res.sendfile('./html/index.html');
+// BotMaster
+var Botmaster = require('botmaster');
+var SocketioBot = require('botmaster-socket.io');
+var botmaster = new Botmaster();
+
+var socketioSettings = {
+    id: '123456',
+    server: botmaster.server
+};
+
+var socketBot = new SocketioBot(socketioSettings);
+botmaster.addBot(SocketioBot);
+
+botmaster.use({
+    type: 'incoming',
+    name: 'my-middleware',
+    controller: (bot, update) => {
+        return bot.reply(update, 'Hello world');
+    }
 });
 
-io.on('connection', function(socket) {
-    console.log('a user connected');
+// app.get('/', function(req, res) {
+//     res.sendfile('./html/index.html');
+// });
 
-    socket.on('message', function(msg) {
-        console.log('message:' + msg);
+// io.on('connection', function(socket) {
+//     console.log('A user connected');
 
-        // broadcast
-        io.emit('message', msg);
-    });
-});
+//     socket.on('message', function(msg) {
+//         console.log('message:' + msg);
 
-http.listen(4500, function() {
-   console.log('listening on *:4500');
-});
+//         // broadcast
+//         io.emit('message', msg);
+//     });
+// });
+
+// http.listen(4500, function() {
+//    console.log('listening on *:4500');
+// });
+
+
+
+
+
+
+
+
 
 // var server = require('http').createServer(app);
 // var io = require('socket.io').listen(server);
