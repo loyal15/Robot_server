@@ -1,9 +1,9 @@
 
 // 'use strict';
-// import express from 'express';
-// import path from 'path';
-// import bodyParser from 'body-parser';
-// import { listeners } from 'cluster';
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import { listeners } from 'cluster';
 
 const app = express();
 const server = require('http').createServer(app);
@@ -16,7 +16,6 @@ console.log('Server is running');
 app.get('/', (req, res)) => {
     res.file('/.html/index.html');
 }
-
 
 // const init = async() => {
 //     await server.register(require('inert'));
