@@ -5,17 +5,21 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import { listeners } from 'cluster';
 
-const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
-const PORT = 4500;
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+var PORT = 4500;
 
 server.listen(PORT);
 console.log('Server is running');
 
-app.get('/', (req, res)) => {
-    res.file('/.html/index.html');
-}
+server.route({method:'GET',path:'/',handler: (req,res) => { 
+    return res.file('./html/index.html');
+}});
+
+// app.get('/', (req, res)) => {
+//     res.file('/.html/index.html');
+// }
 
 // const init = async() => {
 //     await server.register(require('inert'));

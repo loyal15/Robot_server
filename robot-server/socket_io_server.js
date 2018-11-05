@@ -112,7 +112,7 @@ module.exports = function(server) {
             switch( message.id ) {
                 case 'register':
                     if( validate(message.owner) == false )
-                        break
+                        break;
                     console.log( "new user socket id:" + socket.id );
                     var user = theUserRegistry.getByOwner(message.owner);
                     if( !user ) {
@@ -132,7 +132,7 @@ module.exports = function(server) {
                     break;
                 case 'unregister':
                     if( validate(message.owner) == false )
-                        break
+                        break;
                     var user = theUserRegistry.getByOwner(message.owner);
                     if( user ) {
                         theUserRegistry.removeByOwner(message.owner);
