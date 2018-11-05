@@ -1,5 +1,7 @@
 
-'use strict';
+// 'use strict';
+import express from 'express';
+
 //-------------------------------------------------------//
 var Hapi = require('hapi');
 //-------------------------------------------------------//
@@ -12,11 +14,11 @@ var serverLive = new Hapi.Server({ port:portLive});
 const init = async() => {
     await server.register(require('inert'));
     await server.start();    
-    console.log("Robot Backend(RESTful API) Server has started on port " + port);
+    console.log('Robot Backend(RESTful API) Server has started on port ' + port);
 }
 const initLive = async() => {
     await serverLive.start();    
-    console.log("RobotApp Server has started on port " + portLive);
+    console.log('RobotApp Server has started on port ' + portLive);
     require('./robot-server/socket_io_server')(serverLive);
 }
 
