@@ -1,21 +1,31 @@
 
 // 'use strict';
-import express from 'express';
-import path from 'path';
-import bodyParser from 'body-parser';
-import { listeners } from 'cluster';
+// import express from 'express';
+// import path from 'path';
+// import bodyParser from 'body-parser';
+// import { listeners } from 'cluster';
 
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-var PORT = 4500;
+var app = require('express')();
+var http = require('http').Server(app);
 
-server.listen(PORT);
-console.log('Server is running');
+app.get('/', function(req, res) {
+    res.send("<h1>Hello world'</h1>");
+});
 
-server.route({method:'GET',path:'/',handler: (req,res) => { 
-    return res.file('./html/index.html');
-}});
+http.listen(3000, function() {
+   console.log('listening on *:3000');
+});
+
+// var server = require('http').createServer(app);
+// var io = require('socket.io').listen(server);
+// var PORT = 4500;
+
+// server.listen(PORT);
+// console.log('Server is running');
+
+// server.route({method:'GET',path:'/',handler: (req,res) => { 
+//     return res.file('./html/index.html');
+// }});
 
 // app.get('/', (req, res)) => {
 //     res.file('/.html/index.html');
