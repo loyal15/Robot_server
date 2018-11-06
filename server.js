@@ -24,8 +24,10 @@ app.get('/', function(req, res) {
 // });
 
 io.sockets.on('connection', function(socket) {
-    socket.on('login', function(data) {
+    socket.on('login', function(_data) {
         var clientInfo;
+        var data = JSON.parse(_data);
+
         clientInfo.uid = data.uid;
         clientInfo.id = socket.id;
 
@@ -34,7 +36,8 @@ io.sockets.on('connection', function(socket) {
         console.log(clientInfo.uid + ' connected');
     });
 
-    socket.on('message', function(msg) {
+    socket.on('message', function(_data) {
+        var data = JSON.parse(_data);
 
         for (var i = 0; i < clients.length; i++) {
             var client = clients[i];
