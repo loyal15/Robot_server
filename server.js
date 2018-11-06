@@ -33,12 +33,12 @@ io.sockets.on('connection', function(socket) {
             console.error(err);
         }
         console.log('jsonData:' + jsonData);
-        console.log('uid:'+ jsonData[uid]);
+        // console.log('uid:'+ jsonData);
 
-        clientInfo.uid = jsonData[uid];
-        clientInfo.id = socket.id;
+        // clientInfo.uid = jsonData[uid];
+        // clientInfo.id = socket.id;
 
-        clients.push(clientInfo);
+        // clients.push(clientInfo);
 
         console.log(clientInfo.uid + ' connected');
     });
