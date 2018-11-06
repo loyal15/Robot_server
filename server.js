@@ -17,7 +17,7 @@ io.on('connection', function(socket) {
 
         // broadcast
         // io.emit('message', msg);
-        io.send('message', msg);
+        io.send('message456', msg);
     });
 });
 
