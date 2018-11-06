@@ -32,9 +32,10 @@ io.sockets.on('connection', function(socket) {
         } catch(err) {
             console.error(err);
         }
-        console.log('uid:'+ jsonData.uid);
+        console.log('jsonData:' + jsonData);
+        console.log('uid:'+ jsonData[uid]);
 
-        clientInfo.uid = jsonData.uid;
+        clientInfo.uid = jsonData[uid];
         clientInfo.id = socket.id;
 
         clients.push(clientInfo);
