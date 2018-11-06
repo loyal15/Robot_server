@@ -26,12 +26,8 @@ app.get('/', function(req, res) {
 io.sockets.on('connection', function(socket) {
     socket.on('login', function(data) {
         var clientInfo;
+        const jsonData = JSON.parse(data);
 
-        try {
-            const jsonData = JSON.parse(data);
-        } catch(err) {
-            console.error(err);
-        }
         console.log('data:' + data);
         console.log('jsonData:' + jsonData);
         // console.log('uid:'+ jsonData);
@@ -45,11 +41,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('message', function(data) {
-        try {
-            const jsonData = JSON.parse(data);
-        } catch(err) {
-            console.error(err);
-        }
+        const jsonData = JSON.parse(data);
 
         for (var i = 0; i < clients.length; i++) {
             var client = clients[i];
