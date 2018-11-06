@@ -6,24 +6,26 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 // BotMaster
-var Botmaster = require('botmaster');
-var SocketioBot = require('botmaster-socket.io');
-var botmaster = new Botmaster();
+const Botmaster = require('botmaster');
+const SocketioBot = require('botmaster-socket.io');
+const botmaster = new Botmaster();
 
-var socketioSettings = {
-    id: '123456',
-    server: botmaster.server
+const socketioSettings = {
+  id: 'SOME_BOT_ID_OF_YOUR_CHOOSING',
+  server: botmaster.server, // this is required for socket.io. You can set it to another node server object if you wish to. But in this example, we will use the one created by botmaster under the hood
 };
 
-var socketBot = new SocketioBot(socketioSettings);
-botmaster.addBot(SocketioBot);
+const socketioBot = new SocketioBot(socketioSettings);
+botmaster.addBot(socketioBot);
+
+
 
 botmaster.use({
-    type: 'incoming',
-    name: 'my-middleware',
-    controller: (bot, update) => {
-        return bot.reply(update, 'Hello world');
-    }
+  type: 'incoming',
+  name: 'my-middleware',
+  controller: (bot, update) => {
+    return bot.reply(update, 'Hello world!');
+  }
 });
 
 // app.get('/', function(req, res) {
