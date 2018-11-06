@@ -28,24 +28,26 @@ botmaster.use({
   }
 });
 
-// app.get('/', function(req, res) {
-//     res.sendfile('./html/index.html');
-// });
+app.get('/', function(req, res) {
+    res.sendfile('./html/index.html');
+});
 
-// io.on('connection', function(socket) {
-//     console.log('A user connected');
+io.on('connection', function(socket) {
+    console.log('A user connected');
 
-//     socket.on('message', function(msg) {
-//         console.log('message:' + msg);
+    socket.on('message', function(msg) {
+        console.log('message:' + msg);
 
-//         // broadcast
-//         io.emit('message', msg);
-//     });
-// });
+        // broadcast
+        // io.emit('message', msg);
+        botmaster.use();
 
-// http.listen(4500, function() {
-//    console.log('listening on *:4500');
-// });
+    });
+});
+
+http.listen(4500, function() {
+   console.log('listening on *:4500');
+});
 
 
 
