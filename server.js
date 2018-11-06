@@ -27,14 +27,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('login', function(data) {
         var clientInfo;
 
-        try {
-            const jsonData = JSON.parse(data);
-            var uid = jsonData.uid;
-            console.log('uid:'+ uid);
-
-        } catch(err) {
-            console.error(err);
-        }
+        const jsonData = JSON.parse(data);
+        var uid = jsonData.uid;
+        console.log('uid:'+ uid);
 
         // clientInfo.uid = jsonData[uid];
         // clientInfo.id = socket.id;
