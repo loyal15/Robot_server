@@ -26,19 +26,14 @@ app.get('/', function(req, res) {
 io.sockets.on('connection', function(socket) {
     socket.on('login', function(data) {
         var clientInfo;
-
-        console.log('data:' + data);
-        
         const jsonData = JSON.parse(data);
-        var uid = jsonData.uid;
-        console.log('uid:'+ uid);
 
-        // clientInfo.uid = jsonData[uid];
-        // clientInfo.id = socket.id;
+        clientInfo.uid = jsonData.uid;
+        clientInfo.id = socket.id;
 
-        // clients.push(clientInfo);
+        clients.push(clientInfo);
 
-        // console.log(clientInfo.uid + ' connected');
+        console.log(clientInfo.uid + ' connected');
     });
 
     socket.on('message', function(data) {
