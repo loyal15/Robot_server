@@ -2,11 +2,16 @@
 // 'use strict';
 
 var app = require('express')();
+var bodyParser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 4500;
 var clients = [];
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.get('/', function(req, res) {
     res.sendfile('./html/index.html');
 });
@@ -28,9 +33,8 @@ io.sockets.on('connection', function(socket) {
         var clientInfo;
         const jsonData = JSON.parse(data);
 
-        console.log('data:' + data);
-        console.log('jsonData:' + jsonData);
-        // console.log('uid:'+ jsonData);
+        var uid = data.body.uid;
+        console.log('uid:'+ uid);
 
         // clientInfo.uid = jsonData[uid];
         // clientInfo.id = socket.id;
