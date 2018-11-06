@@ -30,7 +30,7 @@ io.sockets.on('connection', function(socket) {
         var clientInfo;
         var data = JSON.parse(_data);
 
-        clientInfo.uid = data.uid;
+        clientInfo.uid = data[uid];
         clientInfo.id = socket.id;
 
         clients.push(clientInfo);
