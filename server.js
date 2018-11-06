@@ -39,8 +39,7 @@ io.on('connection', function(socket) {
         console.log('message:' + msg);
 
         // broadcast
-        // io.emit('message', msg);
-        botmaster.use();
+        io.emit('message', msg);
 
     });
 });
