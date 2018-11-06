@@ -25,9 +25,10 @@ app.get('/', function(req, res) {
 
 io.sockets.on('connection', function(socket) {
     socket.on('login', function(data) {
-        var clientInfo;
+        var clientInfo = JSON();
         const jsonData = JSON.parse(data);
 
+        console.log('uid:' + jsonData.uid);
         clientInfo.uid = jsonData.uid;
         clientInfo.id = socket.id;
 
