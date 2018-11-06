@@ -27,6 +27,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('login', function(data) {
         var clientInfo;
 
+        console.log('data:' + data);
+        
         const jsonData = JSON.parse(data);
         var uid = jsonData.uid;
         console.log('uid:'+ uid);
