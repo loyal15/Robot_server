@@ -40,7 +40,6 @@ io.sockets.on('connection', function(socket) {
 
         for (var i = 0; i < clients.length; i++) {
             var client = clients[i];
-            console.log('client.uid = ' + client.uid);
 
             if (client.uid == jsonData.uid) {
                 io.to(client.id).send(jsonData.message);
