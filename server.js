@@ -32,6 +32,7 @@ io.sockets.on('connection', function(socket) {
         } catch(err) {
             console.error(err);
         }
+        console.log('data:' + data);
         console.log('jsonData:' + jsonData);
         // console.log('uid:'+ jsonData);
 
@@ -40,7 +41,7 @@ io.sockets.on('connection', function(socket) {
 
         // clients.push(clientInfo);
 
-        console.log(clientInfo.uid + ' connected');
+        // console.log(clientInfo.uid + ' connected');
     });
 
     socket.on('message', function(data) {
