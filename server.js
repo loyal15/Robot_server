@@ -25,6 +25,8 @@ app.get('/', function(req, res) {
 
 io.sockets.on('connection', function(socket) {
     socket.on('login', function(_data) {
+        console.log('_data' + _data);
+
         var clientInfo;
         var data = JSON.parse(_data);
 
