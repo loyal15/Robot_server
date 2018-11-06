@@ -43,8 +43,7 @@ io.sockets.on('connection', function(socket) {
             console.log('client.uid = ' + client.uid);
 
             if (client.uid == jsonData.uid) {
-                // io.sockets.socket(client.id).send(jsonData.msg);
-                io.to(client.id).send(jsonData.msg);
+                io.to(client.id).send(jsonData.message);
                 break;
             }
         }
