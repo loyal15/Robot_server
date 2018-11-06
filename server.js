@@ -24,13 +24,17 @@ app.get('/', function(req, res) {
 // });
 
 io.sockets.on('connection', function(socket) {
-    socket.on('login', function(_data) {
+    socket.on('login', function(data) {
         var clientInfo;
-        var data = JSON.parse(_data);
 
-        console.log('uid:'+ data[uid]);
+        try {
+            const jsonData = JSON.parse(data);
+        } catch(err) {
+            console.error(err);
+        }
+        console.log('uid:'+ jsonData.uid);
 
-        clientInfo.uid = data[uid];
+        clientInfo.uid = jsonData.uid;
         clientInfo.id = socket.id;
 
         clients.push(clientInfo);
@@ -38,15 +42,19 @@ io.sockets.on('connection', function(socket) {
         console.log(clientInfo.uid + ' connected');
     });
 
-    socket.on('message', function(_data) {
-        var data = JSON.parse(_data);
+    socket.on('message', function(data) {
+        try {
+            const jsonData = JSON.parse(data);
+        } catch(err) {
+            console.error(err);
+        }
 
         for (var i = 0; i < clients.length; i++) {
             var client = clients[i];
             console.log('client.uid = ' + client.uid);
 
-            if (client.uid == data.uid) {
-                io.sockets.socket(client.id).send(data.msg);
+            if (client.uid == jsonData.uid) {
+                io.sockets.socket(client.id).send(jsonData.msg);
                 break;
             }
         }
