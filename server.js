@@ -2,16 +2,11 @@
 // 'use strict';
 
 var app = require('express')();
-var bodyParser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 4500;
 var clients = [];
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 app.get('/', function(req, res) {
     res.sendfile('./html/index.html');
 });
