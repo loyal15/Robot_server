@@ -28,12 +28,10 @@ io.sockets.on('connection', function(socket) {
         var clientInfo = new Object();
         const jsonData = JSON.parse(data);
 
-        console.log('uid:' + jsonData.uid);
         clientInfo.uid = jsonData.uid;
         clientInfo.id = socket.id;
 
         clients.push(clientInfo);
-
         console.log(clientInfo.uid + ' connected');
     });
 
@@ -46,7 +44,7 @@ io.sockets.on('connection', function(socket) {
 
             if (client.uid == jsonData.uid) {
                 // io.sockets.socket(client.id).send(jsonData.msg);
-                io.sockets(client.id).send(jsonData.msg);
+                io.to(client.id).send(jsonData.msg);
                 break;
             }
         }
