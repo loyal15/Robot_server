@@ -68,11 +68,11 @@ http.listen(port, function() {
 retryMessage(msg, function() {
     var strLenth = msg.length;
 
-    if strLenth < 20 {
+    if (strLenth < 20) {
         return 'Apple';
-    } else if strLenth < 18 {
+    } else if (strLenth < 18) {
         return 'Computer';
-    } else if strLenth < 16 {
+    } else if (strLenth < 16) {
         return 'Sun';
     } else {
         return 'Football';
