@@ -46,11 +46,11 @@ io.sockets.on('connection', function(socket) {
                 var strLenth = jsonData.message.length;
                 var retryMessage;
 
-                if (strLenth < 20) {
+                if (strLenth > 0 && strLenth < 5) {
                     retryMessage = 'Apple';
-                } else if (strLenth < 18) {
+                } else if (strLenth >= 5 && strLenth < 10) {
                     retryMessage = 'Computer';
-                } else if (strLenth < 16) {
+                } else if (strLenth >= 10 && strLenth < 15) {
                     retryMessage = 'Sun';
                 } else {
                     retryMessage = 'Football';
