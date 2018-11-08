@@ -42,7 +42,8 @@ io.sockets.on('connection', function(socket) {
             var client = clients[i];
 
             if (client.uid == jsonData.uid) {
-                io.to(client.id).send(jsonData.message);
+                var retry = retryMessage(jsonData.message);
+                io.to(client.id).send(retry);
                 break;
             }
         }
@@ -65,6 +66,17 @@ http.listen(port, function() {
 });
 
 retryMessage(msg) {
-    
+    var strLenth = msg.length;
+
+    if strLenth < 20 {
+        return 'Apple';
+    } else if strLenth < 18 {
+        return 'Computer';
+    } else if strLenth < 16 {
+        return 'Sun';
+    } else {
+        return 'Football';
+    }
+
 }
 
