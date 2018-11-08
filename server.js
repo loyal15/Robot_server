@@ -65,7 +65,7 @@ http.listen(port, function() {
    console.log('listening on :' + port);
 });
 
-retryMessage(msg) {
+retryMessage(msg, function() {
     var strLenth = msg.length;
 
     if strLenth < 20 {
@@ -77,6 +77,4 @@ retryMessage(msg) {
     } else {
         return 'Football';
     }
-
-}
-
+});
