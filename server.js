@@ -52,6 +52,10 @@ io.sockets.on('connection', function(socket) {
                     retryMessage = 'Computer';
                 } else if (strLenth >= 10 && strLenth < 15) {
                     retryMessage = 'Sun';
+                } else if (strLenth >= 15 && strLenth < 25) {
+                    retryMessage = 'Orange';
+                } else if (strLenth >= 25 && strLenth < 35) {
+                    retryMessage = 'Google';
                 } else {
                     retryMessage = 'Football';
                 }
