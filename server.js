@@ -42,8 +42,21 @@ io.sockets.on('connection', function(socket) {
             var client = clients[i];
 
             if (client.uid == jsonData.uid) {
-                var retry = retryMessage(jsonData.message);
-                io.to(client.id).send(retry);
+                // retry logic
+                var strLenth = jsonData.message.length;
+                var retryMessage;
+
+                if (strLenth < 20) {
+                    retryMessage = 'Apple';
+                } else if (strLenth < 18) {
+                    retryMessage = 'Computer';
+                } else if (strLenth < 16) {
+                    retryMessage = 'Sun';
+                } else {
+                    retryMessage = 'Football';
+                }
+
+                io.to(client.id).send(retryMessage);
                 break;
             }
         }
@@ -63,18 +76,4 @@ io.sockets.on('connection', function(socket) {
 
 http.listen(port, function() {
    console.log('listening on :' + port);
-});
-
-retryMessage(msg, function() {
-    var strLenth = msg.length;
-
-    if (strLenth < 20) {
-        return 'Apple';
-    } else if (strLenth < 18) {
-        return 'Computer';
-    } else if (strLenth < 16) {
-        return 'Sun';
-    } else {
-        return 'Football';
-    }
 });
